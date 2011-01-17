@@ -1,0 +1,22 @@
+Asymptote unfortunatly doesn't allow command line arguments.  So, I've written a little shell script that will take argments and pipe them into the HeartPlot script.
+
+Format:
+
+./HeartPlot.sh data_filename.csv "Plot Title" min_to_start min_to_end BPM_low BPM_high dot_size bool_filter plot_filename.pdf
+
+data_filename.csv: the name of your input file, as created by the Heart Logger software
+"Plot Title": the text you'd like at the top of the plot.  It always prepends "heart Spark:".
+min_to_start: minute of data to start plotting (commonly zero)
+min_to_stop: minute of data to stop plotting (if you want it all, specify 1000 or similar large number)
+BPM_low: where to start y axis beats/min value (commonly 40)
+BPM_high: where to stop y axis beats/min value (commonly 150)
+dot_size: size of dots to use for each point.  Typically 0.3, but it depends
+  how you like your points and on the total number of points.
+bool_filter: either 0 or 1 depending if you want to filter the data to remove false-postives and false-negatives from the data
+plot_filename.pdf: the output file where the plot will be stored.
+
+Example:
+
+./HeartPlot.sh HeartData_WholeDay_2011Jan14.csv "strange rate spikes?" 20 22 40 150 0.3 1 BPM_Rate_Spikes.pdf
+
+In an ideal world this script and the asymptote script would take regular command line arguments (-x 0 100 -y 40 150 etc), and default to reasonable values if you don't supply anything.  But I'm too lazy to fix it right now and this was a quick way to get command line control of the asymptote script.
