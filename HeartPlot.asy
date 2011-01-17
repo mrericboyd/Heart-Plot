@@ -4,10 +4,8 @@
 
 import graph;
 
-// load stuff from the config/info file
+// load config stuff from stdin (put there by the shell script)
 string[] args=stdin.line().csv();
-
-//string[] args = config;
 
 string filename = args[0];
 string title = "Heart Spark: " + args[1];
@@ -108,8 +106,6 @@ defaultpen(dotsize);
 for(int i=0;i<numpoints;++i) {
   if (minutes[i] >= xstart && minutes[i]<=xstop) {
     if (heartrate[i] >= ystart && heartrate[i] <= ystop){
-      //pair point=(minutes[i],heartrate[i]);
-      //dot(point);
       if (FilterPoint(i))
       {
         pair point=(minutes[i], heartrate[i]);
